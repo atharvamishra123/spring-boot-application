@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="html://thymeleaf.org">
+<!--Bootstrap CDN Link-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Aguafina Script' rel='stylesheet' >
+<link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>cart</title>
+</head>
+<body>
+<br>
+<hr>
+<div class="Container text-primary">
+    <h4 class="text-center p-3 mb-2 bg-dark text-white">Added Products</h4>
+</div>
+<hr>
+<!--Listing User Added Products-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h4>Product Name</h4>
+            <hr>
+            <div th:each = "product : ${products}">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p class="text-primary" th:text = "${product.productname}"></p></li>
+            </ul>
+                <br>
+        </div>
+        </div>
+
+        <div>
+        <div class="col-sm">
+            <h4>Product Cost</h4>
+            <hr>
+            <div th:each = "productcost : ${products}">
+            <ul class="list-group">
+                <li class="list-group-item"><p class="text-primary"  th:text = "${productcost.cost}"></p></li>
+            </ul>
+                <br>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<hr>
+<a th:href="@{/addtocart/placeorder}">PlaceOrder</a>
+
+<!--<button type="button" class="btn btn-secondary  btn-lg btn-block">
+    <a href="#" class="btn btn-link" th:href="@{/addtocart/placeorder"} target="_blank" methods="post"></a>addToCart
+</button>-->
+
+</body>
+</html>
+
+<!--<ul class="list-group">
+
+    <div th:each = "product : ${products}">
+    <li class="list-group-item">
+        <p class="text-primary" th:text = "${product.productname}"></p>
+        <p class="text-primary" th:text = "${product.cost}"></p>
+    </li>
+    </div>
+
+</ul>-->

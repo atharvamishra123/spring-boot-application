@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="html://thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!--Bootstrap CDN Link-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Aguafina Script' rel='stylesheet' >
+<link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>products</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light sticky-top">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Dummy-1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Dummy-2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Dummy 3</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">[[${#request.remoteUser}]]</a>
+        </li>
+    </ul>
+</nav>
+<div class="jumbotron jumbotron-fluid my-custom-jumbotron">
+    <div class="container">
+        <h1 class="display-4">Fluid jumbotron</h1>
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    </div>
+</div>
+<h2>----Products..------</h2>
+<div class="container" >
+    <div class="row">
+        <div class="col-xl-3" th:each="allproducts, istat : ${relatedproducts}">
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-title" th:text = "${allproducts.id}"></p>
+                    <p class="card-title" th:text = "${allproducts.productname}"></p>
+                    <p class="card-title" th:text = "${allproducts.cost}"></p>
+                    <hr>
+                    <a href="#" class="btn btn-link"
+                       th:href="@{/addtocart/selectedproduct/{pid} (pid=${allproducts.id})}"
+                       target="_self" methods="post">addToCart</a>
+                </div>
+            </div>
+            <span th:if="${istat.count % 4 == 0}"><br></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
